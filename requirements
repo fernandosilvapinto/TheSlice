@@ -1,0 +1,36 @@
+System Requirements Document
+Introduction
+The system described in this document is a software application that will be used to register and manage customer information, sales data, and generate reports. The purpose of this system is to provide a tool for analyzing sales data and identifying trends in customer behavior that can be used to inform marketing and sales strategies.
+
+Functional Requirements
+The following functional requirements have been identified for the system:
+
+Customer Management
+The system shall allow users to register new customers.
+The system shall allow users to update customer information.
+The system shall allow users to delete customer information.
+The system shall allow users to search for customers by name, ID, or other relevant criteria.
+Sales Management
+The system shall allow users to register new sales.
+The system shall record the date and time of each sale.
+The system shall record the products sold in each transaction.
+The system shall record the price of each product sold.
+The system shall record the total value of each sale.
+Sales Reporting
+The system shall generate reports on the most sold products.
+The system shall generate reports on the total revenue generated.
+The system shall generate reports on the sales made by each customer.
+The system shall generate reports on the sales made by region.
+Alerting
+The system shall alert users when a customer has not made a purchase in a specified amount of time.
+The system shall alert users when a customer has a pattern of purchasing a particular product.
+The system shall alert users when a product has not been sold in a specified amount of time.
+Non-Functional Requirements
+The following non-functional requirements have been identified for the system:
+
+The system shall be accessible to users with disabilities.
+The system shall be secure and protect sensitive customer data.
+The system shall be scalable to accommodate growth in customer and sales data.
+The system shall be available 24/7 with minimal downtime for maintenance.
+Conclusion
+This document outlines the functional and non-functional requirements for the system described. The system will provide an efficient and effective way to manage customer data, sales data, and generate reports for analysis.

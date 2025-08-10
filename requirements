@@ -1,36 +1,31 @@
-System Requirements Document
-Introduction
-The system described in this document is a software application that will be used to register and manage customer information, sales data, and generate reports. The purpose of this system is to provide a tool for analyzing sales data and identifying trends in customer behavior that can be used to inform marketing and sales strategies.
-
-Functional Requirements
-The following functional requirements have been identified for the system:
-
-Customer Management
-The system shall allow users to register new customers.
-The system shall allow users to update customer information.
-The system shall allow users to delete customer information.
-The system shall allow users to search for customers by name, ID, or other relevant criteria.
-Sales Management
-The system shall allow users to register new sales.
-The system shall record the date and time of each sale.
-The system shall record the products sold in each transaction.
-The system shall record the price of each product sold.
-The system shall record the total value of each sale.
-Sales Reporting
-The system shall generate reports on the most sold products.
-The system shall generate reports on the total revenue generated.
-The system shall generate reports on the sales made by each customer.
-The system shall generate reports on the sales made by region.
-Alerting
-The system shall alert users when a customer has not made a purchase in a specified amount of time.
-The system shall alert users when a customer has a pattern of purchasing a particular product.
-The system shall alert users when a product has not been sold in a specified amount of time.
-Non-Functional Requirements
-The following non-functional requirements have been identified for the system:
-
-The system shall be accessible to users with disabilities.
-The system shall be secure and protect sensitive customer data.
-The system shall be scalable to accommodate growth in customer and sales data.
-The system shall be available 24/7 with minimal downtime for maintenance.
-Conclusion
-This document outlines the functional and non-functional requirements for the system described. The system will provide an efficient and effective way to manage customer data, sales data, and generate reports for analysis.
+| ID   | Descrição                                                       | Prioridade |
+| ---- | --------------------------------------------------------------- | ---------- |
+| RF01 | Permitir cadastro de usuários com validação de dados.           | Alta       |
+| RF02 | Permitir autenticação via JWT.                                  | Alta       |
+| RF03 | Permitir login e logout seguro.                                 | Alta       |
+| RF04 | Permitir gestão de usuários no backoffice (CRUD).               | Alta       |
+| RF05 | Permitir agendamento de eventos com datas e horários.           | Alta       |
+| RF06 | Permitir gestão de pagamentos (integração futura com gateway).  | Média      |
+| RF07 | Disponibilizar painel administrativo com métricas e relatórios. | Média      |
+| RF08 | Implementar controle de permissões (roles: admin, user).        | Alta       |
+| RF09 | Validar dados no backend e frontend.                            | Alta       |
+| RF10 | Fornecer API REST para comunicação com o frontend.              | Alta       |
+| RF11 | Registrar logs de atividades para auditoria.                    | Média      |
+| RF12 | Permitir busca e filtros em listagens.                          | Média      |
+| RF13 | Permitir exportação de dados (CSV, PDF, etc.) no backoffice.    | Baixa      |
+_______________________________________________________________________________________
+_______________________________________________________________________________________
+| ID    | Descrição                                                             | Prioridade |
+| ----- | --------------------------------------------------------------------- | ---------- |
+| RNF01 | Criptografar senhas com BCrypt.                                       | Alta       |
+| RNF02 | Utilizar comunicação segura via HTTPS.                                | Alta       |
+| RNF03 | Prevenir ataques como SQL Injection e XSS.                            | Alta       |
+| RNF04 | Arquitetura escalável e modular.                                      | Alta       |
+| RNF05 | API com resposta média < 300ms para operações simples.                | Média      |
+| RNF06 | Implementar paginação em listagens grandes.                           | Média      |
+| RNF07 | Código limpo e padronizado (nomenclatura em inglês, linting).         | Alta       |
+| RNF08 | Suporte a testes unitários e de integração.                           | Média      |
+| RNF09 | Logs detalhados e integração futura com ferramentas de monitoramento. | Baixa      |
+| RNF10 | Documentar API com Swagger/OpenAPI.                                   | Alta       |
+| RNF11 | Disponibilidade acima de 99% em produção.                             | Alta       |
+| RNF12 | Preparar para implantação local e em nuvem.                           | Alta       |

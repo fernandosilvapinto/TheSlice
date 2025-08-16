@@ -41,7 +41,7 @@ namespace Pistachio.Api.Controllers
             return Ok(service);
         }
 
-         [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Create(Service service)
         {
             _context.Services.Add(service);
@@ -82,5 +82,19 @@ namespace Pistachio.Api.Controllers
 
             return NoContent();
         }
+
+
+        // Listar apenas destaques? 
+        // Criar a logica para trabalhar os serviços em "destaque" ?
+        // [HttpGet("destaques")]
+        // public async Task<IActionResult> GetDestaques()
+        // {
+        //     var destaques = await _context.Services
+        //         .Where(s => s.Destaque)
+        //         .ToListAsync();
+
+        //     return Ok(destaques);
+        // }
+
     }
 }

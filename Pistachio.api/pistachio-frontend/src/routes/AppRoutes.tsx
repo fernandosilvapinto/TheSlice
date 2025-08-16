@@ -13,11 +13,12 @@ import PaymentPage from "../pages/Payment/PaymentPage";
 import AdminLoginPage from "../pages/Admin/Login/AdminLoginPage";
 import AdminLayout from "../components/Layout/AdminLayout";
 import AdminDashboardPage from "../pages/Admin/Dashboard/AdminDashboardPage";
-import UsersPage from "../pages/Admin/Users/UsersPage";
-import RolesPage from "../pages/Admin/Roles/RolesPage";
-import ServicesPage from "../pages/Admin/Services/ServicesPage";
-import SchedulingsPage from "../pages/Admin/Schedulings/SchedulingsPage";
-import PaymentsPage from "../pages/Admin/Payments/PaymentsPage";
+import UsersPage from "../pages/Admin/Users/UsersList";
+import RolesPage from "../pages/Admin/Roles/RolesList";
+import ServicesPage from "../pages/Admin/Services/ServicesList";
+import ServicesForm from "../pages/Admin/Services/ServicesForm";
+import SchedulingsPage from "../pages/Admin/Schedulings/SchedulingsList";
+import PaymentsPage from "../pages/Admin/Payments/PaymentsList";
 
 import PrivateRouteClient from "./PrivateRouteClient";
 import PrivateRouteAdmin from "./PrivateRouteAdmin";
@@ -115,7 +116,25 @@ export default function AppRoutes() {
               </PrivateRouteAdmin>
             }
           />
+          <Route
+            path="services/new"
+            element={
+              <PrivateRouteAdmin>
+                <ServicesForm />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            path="services/:id"
+            element={
+              <PrivateRouteAdmin>
+                <ServicesForm />
+              </PrivateRouteAdmin>
+            }
+          />
+
         </Route>
+  
 
         {/* Login fora do layout */}
         <Route path="/login" element={<LoginPage />} />

@@ -1,4 +1,8 @@
-// src/pages/Dashboard/DashboardPage.tsx
 export default function DashboardPage() {
-  return <h1 className="text-2xl font-bold text-green-700">Bem-vindo ao Painel</h1>;
+  return (
+    <section className="max-w-4xl mx-auto p-6 text-gray-100">
+      <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
+      <p>Resumo do usuário, próximos agendamentos e notificações.</p>
+    </section>
+  );
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pistachio.Api.Data;
@@ -5,8 +6,9 @@ using Pistachio.Api.Models;
 
 namespace Pistachio.Api.Controllers
 {
-    [ApiController]
+    //[Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
+    [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -35,19 +37,37 @@ namespace Pistachio.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(User user)
         {
-            // Aqui você pode adicionar validações básicas, ex: validar campos obrigatórios
+            // Garantir que a senha seja convertida para hash antes de salvar
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
+
             return CreatedAtAction(nameof(GetById), new { id = user.Id }, user);
         }
 
+
         // PUT api/users/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, User user)
+        public async Task<IActionResult> Update(int id, User updatedUser)
         {
-            if (id != user.Id) return BadRequest();
+            if (id != updatedUser.Id)
+                return BadRequest();
 
-            _context.Entry(user).State = EntityState.Modified;
+            var existingUser = await _context.Users.FindAsync(id);
+            if (existingUser == null)
+                return NotFound();
+
+            // Atualiza apenas os campos permitidos
+            existingUser.Name = updatedUser.Name;
+            existingUser.Email = updatedUser.Email;
+            existingUser.RoleId = updatedUser.RoleId; // se usar relacionamento por ID
+
+            // Se a senha foi enviada e não está vazia, gera novo hash
+            if (!string.IsNullOrWhiteSpace(updatedUser.PasswordHash))
+            {
+                existingUser.PasswordHash = BCrypt.Net.BCrypt.HashPassword(updatedUser.PasswordHash);
+            }
 
             try
             {
@@ -61,8 +81,9 @@ namespace Pistachio.Api.Controllers
                     throw;
             }
 
-            return NoContent(); // 204 sem conteúdo para indicar sucesso
+            return NoContent();
         }
+
 
         // DELETE api/users/5
         [HttpDelete("{id}")]

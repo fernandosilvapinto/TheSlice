@@ -12,8 +12,8 @@ using Pistachio.Api.Data;
 namespace Pistachio.api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250810161447_ajustepayments")]
-    partial class ajustepayments
+    [Migration("20250810161447_AjustePayments")]
+    partial class AjustePayments
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

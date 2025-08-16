@@ -5,7 +5,7 @@
 namespace Pistachio.api.Migrations
 {
     /// <inheritdoc />
-    public partial class ajustepayments : Migration
+    public partial class AjustePayments : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

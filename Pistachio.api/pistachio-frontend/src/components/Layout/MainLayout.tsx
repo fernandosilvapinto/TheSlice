@@ -1,27 +1,19 @@
-// src/components/Layout/MainLayout.tsx
-import { Outlet, Link } from "react-router-dom";
+import React from 'react';
+import type { ReactNode } from 'react';
+import { Outlet } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 
-export default function MainLayout() {
+const MainLayout: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow">
-        <nav className="container mx-auto flex justify-between p-4">
-          <div className="text-lg font-bold text-green-700">Pistachio</div>
-          <ul className="flex gap-4">
-            <li><Link to="/dashboard">Dashboard</Link></li>
-            <li><Link to="/users">Usuários</Link></li>
-            <li><Link to="/services">Serviços</Link></li>
-            <li><Link to="/payments">Pagamentos</Link></li>
-            <li><Link to="/schedulings">Agendamentos</Link></li>
-            <li><Link to="/roles">Roles</Link></li>
-            <li><button>Logout</button></li>
-          </ul>
-        </nav>
-      </header>
-
-      <main className="container mx-auto p-6">
-        <Outlet />
+    <div className="flex flex-col min-h-screen bg-gray-900 text-gray-100">
+      <Header />
+      <main className="flex-grow container mx-auto px-6 py-8">
+        <Outlet /> {/* Renderiza a página filha */}
       </main>
+      <Footer />
     </div>
   );
-}
+};
+
+export default MainLayout;

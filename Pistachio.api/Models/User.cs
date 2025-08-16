@@ -10,6 +10,6 @@ namespace Pistachio.Api.Models
 
         //Relacionamento com Roles
         public int RoleId { get; set; }
-        public Role Role { get; set; } = null!;
+        public Role? Role { get; set; } = null!;
     }
 }

@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pistachio.Api.Data;
 using Pistachio.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Pistachio.Api.Controllers
 {
-    [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
+    [ApiController]
     public class SchedulingsController : ControllerBase
     {
         private readonly AppDbContext _context;

@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-
-const Login: React.FC = () => {
+const AdminLoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -23,19 +22,19 @@ const Login: React.FC = () => {
       if (!response.ok) {
         throw new Error("Credenciais inválidas");
       }
-      
+
       const data = await response.json();
-      
-      if (data.role !== "User") {
+
+      if (data.role !== "Admin") {
         throw new Error("Credenciais inválidas");
       }
-      
+
       // Armazenar token e role no localStorage
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role);
 
       // Redireciona para a dashboard
-      window.location.href = "/";
+      window.location.href = "/admin";
     } catch (err) {
       setError((err as Error).message);
     }
@@ -45,7 +44,7 @@ const Login: React.FC = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
       <div className="bg-gray-800 rounded-lg shadow-2xl max-w-md w-full p-10">
         <h2 className="text-4xl font-bold text-gray-100 mb-8 text-center">
-          Login
+          Administração
         </h2>
 
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
@@ -62,7 +61,6 @@ const Login: React.FC = () => {
               placeholder="E-mail"
               className="w-full px-5 py-3 rounded-md bg-gray-700 text-gray-200 placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
               required
-              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -78,7 +76,6 @@ const Login: React.FC = () => {
               placeholder="Senha"
               className="w-full px-5 py-3 rounded-md bg-gray-700 text-gray-200 placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
               required
-              value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
@@ -101,18 +98,9 @@ const Login: React.FC = () => {
             Esqueci minha senha
           </a>
         </div>
-        <div className="mt-2 text-center">
-          <a
-            href="/"
-            className="text-sm text-indigo-400 hover:text-indigo-600 hover:underline"
-          >
-            Voltar
-          </a>
-        </div>
       </div>
     </div>
   );
 };
 
-export default Login;
-
+export default AdminLoginPage;

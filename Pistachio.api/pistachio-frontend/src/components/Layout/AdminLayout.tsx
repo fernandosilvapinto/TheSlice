@@ -1,11 +1,22 @@
 import React, { type ReactNode } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+
 
 type Props = {
   children?: ReactNode;
 };
 
+
 const AdminLayout: React.FC<Props> = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/admin");
+  };
+
+
   return (
     <div className="flex min-h-screen bg-gray-900 text-gray-100">
       {/* Sidebar */}
@@ -17,6 +28,13 @@ const AdminLayout: React.FC<Props> = () => {
           <Link to="/admin/services" className="hover:text-blue-400">Serviços</Link>
           <Link to="/admin/schedulings" className="hover:text-blue-400">Agendamentos</Link>
           <Link to="/admin/payments" className="hover:text-blue-400">Pagamentos</Link>
+          <button
+            onClick={handleLogout}
+            className="hover:text-red-400 transition"
+          >
+            Sair
+          </button>
+                  
         </nav>
       </aside>
 

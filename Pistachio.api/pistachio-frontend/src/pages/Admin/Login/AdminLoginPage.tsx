@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const AdminLoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -66,18 +68,25 @@ const AdminLoginPage: React.FC = () => {
           </div>
 
           {/* Senha */}
-          <div>
+          <div className="relative w-full">
             <label htmlFor="password" className="sr-only">
               Senha
             </label>
             <input
               id="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Senha"
               className="w-full px-5 py-3 rounded-md bg-gray-700 text-gray-200 placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
               required
               onChange={(e) => setPassword(e.target.value)}
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-200"
+            >
+              {showPassword ? <EyeIcon className="w-5 h-5"  /> : <EyeSlashIcon className="w-5 h-5" />}
+            </button>
           </div>
 
           {/* Botão Login */}

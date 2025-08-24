@@ -19,7 +19,7 @@ export default function ServiceForm() {
     description: "",
     price: 0,
     isActive: true,
-    isFeatured: false
+    isFeatured: false,
   });
 
   const token = localStorage.getItem("token"); // pega token do localStorage
@@ -46,7 +46,10 @@ export default function ServiceForm() {
       const url = id ? `/api/services/${id}` : "/api/services";
       await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json", 
+          Authorization: `Bearer ${token}` 
+        },
         body: JSON.stringify(service),
       });
       navigate("/admin/services");
@@ -56,38 +59,54 @@ export default function ServiceForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
-      <div className="bg-gray-800 rounded-lg shadow-2xl max-w-md w-full p-10">
-        <h2 className="text-4xl font-bold text-gray-100 mb-8 text-center">
+    <div className="flex-1 p-8 bg-gray-900 overflow-y-auto">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-3xl font-bold text-gray-100 mb-10 border-b border-gray-700 pb-4">
           {id ? "Editar Serviço" : "Novo Serviço"}
         </h2>
 
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        {error && (
+          <div className="bg-red-600/20 text-red-400 px-4 py-2 rounded-md mb-6">
+            {error}
+          </div>
+        )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="name" className="sr-only">
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          {/* Nome */}
+          <div className="col-span-2">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-300 mb-2"
+            >
               Nome
             </label>
             <input
               id="name"
               type="text"
-              placeholder="Nome"
-              className="w-full px-5 py-3 rounded-md bg-gray-700 text-gray-200 placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              placeholder="Nome do serviço"
+              className="w-full px-5 py-3 rounded-md bg-gray-800 text-gray-200 placeholder-gray-500 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
               required
               value={service.name}
               onChange={(e) => setService({ ...service, name: e.target.value })}
             />
           </div>
 
-          <div>
-            <label htmlFor="description" className="sr-only">
+          {/* Descrição */}
+          <div className="col-span-2">
+            <label
+              htmlFor="description"
+              className="block text-sm font-medium text-gray-300 mb-2"
+            >
               Descrição
             </label>
             <textarea
               id="description"
-              placeholder="Descrição"
-              className="w-full px-5 py-3 rounded-md bg-gray-700 text-gray-200 placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              rows={5}
+              placeholder="Descrição detalhada do serviço"
+              className="w-full px-5 py-3 rounded-md bg-gray-800 text-gray-200 placeholder-gray-500 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
               required
               value={service.description}
               onChange={(e) =>
@@ -96,15 +115,19 @@ export default function ServiceForm() {
             />
           </div>
 
+          {/* Preço */}
           <div>
-            <label htmlFor="price" className="sr-only">
+            <label
+              htmlFor="price"
+              className="block text-sm font-medium text-gray-300 mb-2"
+            >
               Preço
             </label>
             <input
               id="price"
               type="number"
-              placeholder="Preço"
-              className="w-full px-5 py-3 rounded-md bg-gray-700 text-gray-200 placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              placeholder="0.00"
+              className="w-full px-5 py-3 rounded-md bg-gray-800 text-gray-200 placeholder-gray-500 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
               required
               value={service.price}
               onChange={(e) =>
@@ -112,38 +135,52 @@ export default function ServiceForm() {
               }
             />
           </div>
-          <div className="flex items-center space-x-4">
-            <label className="flex items-center space-x-2">
+
+          {/* Checkboxes */}
+          <div className="flex flex-col space-y-4">
+            <label className="flex items-center space-x-3 text-gray-300">
               <input
                 type="checkbox"
                 checked={service.isActive || false}
                 onChange={(e) =>
                   setService({ ...service, isActive: e.target.checked })
                 }
-                className="accent-indigo-500"
+                className="h-5 w-5 accent-indigo-500"
               />
               <span>Ativo</span>
             </label>
 
-            <label className="flex items-center space-x-2">
+            <label className="flex items-center space-x-3 text-gray-300">
               <input
                 type="checkbox"
                 checked={service.isFeatured || false}
                 onChange={(e) =>
                   setService({ ...service, isFeatured: e.target.checked })
                 }
-                className="accent-indigo-500"
+                className="h-5 w-5 accent-indigo-500"
               />
               <span>Destaque</span>
             </label>
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-md shadow-md transition transform hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-indigo-400"
-          >
-            Salvar
-          </button>
+          {/* Botão ocupa largura total */}
+          <div className="col-span-2 flex justify-end space-x-4">
+            <button
+              type="submit"
+              className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-md transition transform hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-indigo-400"
+            >
+              Salvar
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate("/admin/services")} // ou outra rota de retorno
+              className="px-6 py-3 rounded-lg border border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white transition"
+            >
+              Cancelar
+            </button>
+
+           
+          </div>
         </form>
       </div>
     </div>

@@ -13,11 +13,14 @@ import PaymentPage from "../pages/Payment/PaymentPage";
 import AdminLoginPage from "../pages/Admin/Login/AdminLoginPage";
 import AdminLayout from "../components/Layout/AdminLayout";
 import AdminDashboardPage from "../pages/Admin/Dashboard/AdminDashboardPage";
-import UsersPage from "../pages/Admin/Users/UsersList";
 import RolesPage from "../pages/Admin/Roles/RolesList";
+import RolesForm from "../pages/Admin/Roles/RolesForm";
 import ServicesPage from "../pages/Admin/Services/ServicesList";
 import ServicesForm from "../pages/Admin/Services/ServicesForm";
+import UsersPage from "../pages/Admin/Users/UsersList";
+import UsersForm from "../pages/Admin/Users/UsersForm";
 import SchedulingsPage from "../pages/Admin/Schedulings/SchedulingsList";
+import SchedulingsForm from "../pages/Admin/Schedulings/SchedulingsForm";
 import PaymentsPage from "../pages/Admin/Payments/PaymentsList";
 
 import PrivateRouteClient from "./PrivateRouteClient";
@@ -76,22 +79,7 @@ export default function AppRoutes() {
               </PrivateRouteAdmin>
             }
           />
-          <Route
-            path="users"
-            element={
-              <PrivateRouteAdmin>
-                <UsersPage />
-              </PrivateRouteAdmin>
-            }
-          />
-          <Route
-            path="roles"
-            element={
-              <PrivateRouteAdmin>
-                <RolesPage />
-              </PrivateRouteAdmin>
-            }
-          />
+
           <Route
             path="payments"
             element={
@@ -100,14 +88,7 @@ export default function AppRoutes() {
               </PrivateRouteAdmin>
             }
           />
-          <Route
-            path="schedulings"
-            element={
-              <PrivateRouteAdmin>
-                <SchedulingsPage />
-              </PrivateRouteAdmin>
-            }
-          />
+
           <Route
             path="services"
             element={
@@ -132,9 +113,82 @@ export default function AppRoutes() {
               </PrivateRouteAdmin>
             }
           />
+          <Route
+            path="users"
+            element={
+              <PrivateRouteAdmin>
+                <UsersPage />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            path="users/new"
+            element={
+              <PrivateRouteAdmin>
+                <UsersForm />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            path="users/:id"
+            element={
+              <PrivateRouteAdmin>
+                <UsersForm />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            path="roles"
+            element={
+              <PrivateRouteAdmin>
+                <RolesPage />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            path="roles/new"
+            element={
+              <PrivateRouteAdmin>
+                <RolesForm />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            path="roles/:id"
+            element={
+              <PrivateRouteAdmin>
+                <RolesForm />
+              </PrivateRouteAdmin>
+            }
+          />
+
+          <Route
+            path="schedulings"
+            element={
+              <PrivateRouteAdmin>
+                <SchedulingsPage />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            path="schedulings/new"
+            element={
+              <PrivateRouteAdmin>
+                <SchedulingsForm />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            path="schedulings/:id"
+            element={
+              <PrivateRouteAdmin>
+                <SchedulingsForm />
+              </PrivateRouteAdmin>
+            }
+          />
+
 
         </Route>
-  
 
         {/* Login fora do layout */}
         <Route path="/login" element={<LoginPage />} />
